@@ -1,0 +1,45 @@
+create --graph columbia1 --type directed
+
+load_csv_edges --graph columbia --csvfile /home/bigdata/csv_parser/New_edge.csv --srcpos 0 --targpos 1 --separator ","
+
+load_csv_vertices --graph columbia --csvfile /home/bigdata/csv_parser/New_node_1.csv --keypos 0 --proppos 1:title --separator ","
+
+load_csv_vertices --graph columbia --csvfile /home/bigdata/csv_parser/New_node_2.csv --keypos 0 --proppos 1:title --separator ","
+
+
+analytic_pagerank --graph columbia1 --prop pr
+
+
+
+
+open --graph columbia
+
+get_num_vertices --graph columbia
+
+get_num_edges --graph columbia
+
+print_all --graph columbia 
+
+find_vertex_max_degree --graph columbia --edgetype in --showall
+find_vertex_max_degree --graph columbia --edgetype out --showall
+find_vertex_max_degree --graph columbia --edgetype all --showall
+
+find_neighbors --graph columbia --id "http://www.columbia.edu/content/az-index.html"
+find_neighbors --graph columbia --id "http://www.columbia.edu/"
+find_neighbors --graph columbia --id "http://t4.tc.columbia.edu/academics/faculty-list/"
+  
+find_vertex --graph columbia --id "http://www.columbia.edu/"
+find_vertex --graph columbia --id "http://www.ee.columbia.edu/"
+find_vertex --graph columbia --id "http://t4.tc.columbia.edu/academics/faculty-list/"
+
+analytic_pagerank --graph columbia --prop "page_rank" 
+
+analytic_start_engine --graph columbia
+
+analytic_betweenness_centrality --graph columbia
+
+analytic_clustering_coefficient --graph columbia
+
+analytic_degree_centrality --graph columbia
+
+analytic_closeness_centrality --graph columbia --ignoreedgeweight
